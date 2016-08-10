@@ -177,7 +177,6 @@
 
                         <md-card-content layout="column" layout-padding="" layout-wrap="">
                             <div flex="99" ng-repeat="(key,value) in host.alarms | groupBy: 'name'">
-                           
                                 <h3 class="md-title">{$key$}</h3>
                                 <md-divider></md-divider>
                                 <table class="table">
@@ -190,9 +189,12 @@
                                     <tbody>
                                         <tr ng-repeat="metric in value">
                                             <td class="md-subhead">
+
                                                 <span ng-if="metric.metrics[0].name == 'process.pid_count'">{$metric.metrics[0].dimensions.process_name$} </span>
 
-                                                <span ng-if="metric.metrics[0].name != 'process.pid_count'">{$metric.metrics[0].name$} </span>
+                                                 <span ng-if="metric.metrics[0].name == 'log.error' || metric.metrics[0].name == 'log.warning'">{$metric.metrics[0].dimensions.process_name$} </span>
+
+                                                <span ng-if="metric.metrics[0].name != 'process.pid_count' &amp;&amp; metric.metrics[0].name != 'log.error' &amp;&amp; metric.metrics[0].name != 'log.warning'">{$metric.metrics[0].name$} </span>
 
                                             </td>
                                             <td class="md-subhead">

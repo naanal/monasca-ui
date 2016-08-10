@@ -23,7 +23,7 @@ import horizon
 class Monitoring(horizon.Dashboard):
     name = _("Monitoring")
     slug = "monitoring"
-    panels = ('overview', 'alarmdefs', 'alarms', 'notifications',)
+    panels = ('overview', 'alarmdefs', 'alarms', 'notifications', 'hosts', 'services', 'vms')
     default_panel = 'overview'
     policy_rules = (("monitoring", "monitoring:monitoring"),)
     permissions = (('openstack.services.' + settings.MONITORING_SERVICE_TYPE),)

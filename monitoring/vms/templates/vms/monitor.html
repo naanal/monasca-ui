@@ -206,8 +206,34 @@
 
                         <md-card-content layout="column">
 
-                           
-                                <div class="row" ng-repeat="alarm in vm.alarms" ng-if="alarm.name=='Vm Status' || alarm.name == 'Vm Crashed' ">
+                            <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr ng-repeat="alar in vm.alarms">
+                                    <td class="md-subhead">{$alar.name$}</td>
+                                    <td class="md-subhead">
+                                        <span ng-if="alar.status == 'OK'">
+                                                    <i class="fa fa-play-circle Healthytext" aria-hidden="true"></i> OK
+                                        </span>
+
+                                        <span ng-if="alar.status == 'ALARM'">
+                                             <i class="fa fa-times Criticaltext" aria-hidden="true"></i> Problem
+                                        </span>
+
+                                        <span ng-if="alar.status == 'UNDETERMINED'">
+                                            <i class="fa fa-hourglass-half Calculatingtext" aria-hidden="true"></i> Loading
+                                        </span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                            
+                             <!--    <div class="row" ng-repeat="alarm in vm.alarms" ng-if="alarm.name=='Vm Status' || alarm.name == 'Vm Crashed' ">
                                     <div class="col-xs-6 md-subhead" ng-if="alarm.name != 'Vm Crashed' ">
                                         {$alarm.name$}
                                     </div>
@@ -245,7 +271,7 @@
                                     </div>
                                    
 
-                                </div>
+                                </div> -->
                             
 
                         </md-card-content>

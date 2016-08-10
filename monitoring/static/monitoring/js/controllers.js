@@ -127,6 +127,105 @@ angular.module('monitoring.controllers', [])
         };
 
     }])
+    .controller('serviceMonitoringController',[
+      "$scope", "$http", "$timeout", "$location", "CHICKLET_TO_ICON",
+      function ($scope, $http, $timeout, $location, CHICKLET_TO_ICON) {
+        var base_url;
+
+        $scope.fetchStatus = function(statics_url) {
+            if(statics_url && !base_url){
+                base_url = statics_url;
+            }
+
+            $http({method: 'GET', url: $location.absUrl().concat('status')}).
+                success(function(data, status, headers, config) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                     $scope.ServicesData = data.series[0].services;
+               }).
+                error(function(data, status, headers, config) {
+                    $scope.stop();
+                });
+
+        };
+
+        $scope.onTimeout = function(){
+            mytimeout = $timeout($scope.onTimeout,10000);
+            $scope.fetchStatus();
+        };
+        var mytimeout = $timeout($scope.onTimeout,10000);
+
+        $scope.stop = function(){
+            $timeout.cancel(mytimeout);
+        };
+
+    }])
+    .controller('hostMonitoringController',[
+      "$scope", "$http", "$timeout", "$location", "CHICKLET_TO_ICON",
+      function ($scope, $http, $timeout, $location, CHICKLET_TO_ICON) {
+        var base_url;
+
+        $scope.fetchStatus = function(statics_url) {
+            if(statics_url && !base_url){
+                base_url = statics_url;
+            }
+
+            $http({method: 'GET', url: $location.absUrl().concat('status')}).
+                success(function(data, status, headers, config) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                    $scope.HostsData = data.series[1].services;
+               }).
+                error(function(data, status, headers, config) {
+                    $scope.stop();
+                });
+
+        };
+
+        $scope.onTimeout = function(){
+            mytimeout = $timeout($scope.onTimeout,10000);
+            $scope.fetchStatus();
+        };
+        var mytimeout = $timeout($scope.onTimeout,10000);
+
+        $scope.stop = function(){
+            $timeout.cancel(mytimeout);
+        };
+
+    }])
+    .controller('vmMonitoringController',[
+      "$scope", "$http", "$timeout", "$location", "CHICKLET_TO_ICON",
+      function ($scope, $http, $timeout, $location, CHICKLET_TO_ICON) {
+        var base_url;
+
+        $scope.fetchStatus = function(statics_url) {
+            if(statics_url && !base_url){
+                base_url = statics_url;
+            }
+
+            $http({method: 'GET', url: $location.absUrl().concat('status')}).
+                success(function(data, status, headers, config) {
+                  // this callback will be called asynchronously
+                  // when the response is available
+                    $scope.VmsData = data.series[2].services;
+               }).
+                error(function(data, status, headers, config) {
+                    $scope.stop();
+                });
+
+        };
+
+        $scope.onTimeout = function(){
+            mytimeout = $timeout($scope.onTimeout,10000);
+            $scope.fetchStatus();
+        };
+        var mytimeout = $timeout($scope.onTimeout,10000);
+
+        $scope.stop = function(){
+            $timeout.cancel(mytimeout);
+        };
+
+    }])
     .controller('alarmNotificationFieldController',
         ['$rootScope', NotificationField]
     )
