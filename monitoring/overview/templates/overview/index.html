@@ -28,7 +28,7 @@
       {% endfor %}
       {% endif %}
       {% if can_access_logs and enable_kibana_button %}
-      <a target="dashboard" href="{% url 'horizon:monitoring:overview:kibana_proxy' url='/' %}" class="btn btn-default">
+      <a target="dashboard" href="{{kibana_url}}" class="btn btn-default">
               <span class="fa fa-bar-chart"></span>
               Log Management
       </a>

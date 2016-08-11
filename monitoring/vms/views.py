@@ -250,6 +250,8 @@ class IndexView(TemplateView):
             region = self.request.user.services_region
             context["grafana_url"] = getattr(
                 settings, 'GRAFANA_URL').get(region, '')
+            context["kibana_url"] = getattr(
+                settings, 'KIBANA_URL')
         except AttributeError:
             # Catches case where Grafana 2 is not enabled.
             proxy_url_path = str(reverse_lazy(constants.URL_PREFIX + 'proxy'))

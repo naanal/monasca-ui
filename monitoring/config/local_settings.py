@@ -57,7 +57,9 @@ GRAFANA_URL = getattr(settings, 'GRAFANA_URL', True)
 GRAFANA_URL = {'RegionOne': "http://172.30.64.89:3000", }
 
 ENABLE_KIBANA_BUTTON = getattr(settings, 'ENABLE_KIBANA_BUTTON', True)
-KIBANA_HOST = getattr(settings, 'KIBANA_HOST', 'http://192.168.10.4:5601/')
+KIBANA_HOST = getattr(settings, 'KIBANA_HOST', 'http://172.30.64.89:5601/')
+
+KIBANA_URL = 'http://172.30.64.89/dashboard/monitoring/logs_proxy'
 
 OPENSTACK_SSL_NO_VERIFY = getattr(settings, 'OPENSTACK_SSL_NO_VERIFY', False)
 OPENSTACK_SSL_CACERT = getattr(settings, 'OPENSTACK_SSL_CACERT', None)
