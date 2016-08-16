@@ -207,7 +207,7 @@ angular.module('monitoring.controllers', [])
                 success(function(data, status, headers, config) {
                   // this callback will be called asynchronously
                   // when the response is available
-                    $scope.VmsData = data.series[2].services;
+                    $scope.VMsData = data.series[2].services;
                }).
                 error(function(data, status, headers, config) {
                     $scope.stop();
